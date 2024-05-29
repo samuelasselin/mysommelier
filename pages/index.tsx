@@ -19,7 +19,7 @@ export const Home: NextPage = () => {
     const {locale} = useRouter();
 
     const [loading, setLoading] = useState(false);
-    const [wineName, setWineName] = useState('Carpineto Brunello-di-Montalcino 2018');
+    const [wineName, setWineName] = useState('');
     const [generatedBios, setGeneratedBios] = useState<String>('');
 
     const bioRef = useRef<null | HTMLDivElement>(null);
