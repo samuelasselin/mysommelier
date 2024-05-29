@@ -1,28 +1,40 @@
 import Link from 'next/link';
-import Github from './GitHub';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 export default function Header() {
-  return (
-    <header className="flex justify-between items-center w-full mt-5 border-b-2 pb-7 sm:px-4 px-2">
-      <Link href="/" className="flex space-x-3">
-        <img
-          alt="header text"
-          src="/write.svg"
-          className="sm:w-9 sm:h-9 w-8 h-8"
-        />
-        <h1 className="sm:text-3xl text-2xl font-bold ml-2 tracking-tight">
-          mysommelier.io
-        </h1>
-      </Link>
-      <a
-        className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 shadow-md transition-colors hover:bg-gray-100"
-        href="https://github.com/Nutlope/twitterbio"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Github />
-        <p>Star on GitHub</p>
-      </a>
-    </header>
-  );
+    const { locale, push, pathname } = useRouter();
+    const { i18n } = useTranslation();
+
+    const changeLocale = locale === 'en' ? 'fr' : 'en';
+
+    useEffect(() => {
+        i18n.changeLanguage(locale);
+    }, [locale]);
+
+    const handleLocaleChange = () => {
+        push(pathname, pathname, { locale: changeLocale });
+    };
+
+    return (
+        <header className="flex justify-between items-center w-full mt-5 border-b-2 pb-7 sm:px-4 px-2">
+            <Link href="/" className="flex space-x-3">
+                <img
+                    alt="header text"
+                    src="/wine.svg"
+                    className="sm:w-10 sm:h-10 w-9 h-9"
+                />
+                <h1 className="sm:text-3xl text-2xl font-bold ml-2 tracking-tight">
+                    vno
+                </h1>
+            </Link>
+
+            <button onClick={handleLocaleChange} className="flex space-x-3">
+                <h5 className="sm:text-2xl text-1xl font-bold ml-2 tracking-tight">
+                    {locale === 'en' ? 'fr' : 'en'}
+                </h5>
+            </button>
+        </header>
+    );
 }
