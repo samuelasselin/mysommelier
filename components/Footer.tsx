@@ -8,8 +8,7 @@ export default function Footer() {
       <div>
         {t('createdBy')}{' '}
         <a
-          href="https://platform.openai.com/docs/models"
-          target="_blank"
+          href="/"
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
