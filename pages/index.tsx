@@ -77,7 +77,6 @@ export const Home: NextPage = () => {
             }
         };
 
-
         const onParse = onParseGPT;
 
         const reader = data.getReader();
@@ -131,6 +130,7 @@ export const Home: NextPage = () => {
                         <button
                             className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
                             onClick={(e) => generateBio(e)}
+                            disabled={wineName == ''}
                         >
                             {t('mainButton')} &rarr;
                         </button>
